@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>jane doe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f2ec;
+      --ink: #1a1916;
+      --muted: #7a776e;
+      --accent: #2d5a27;
+      --rule: #d8d4cc;
+    }
+
+    html { font-size: 17px; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── layout ── */
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── nav ── */
+    nav {
+      display: flex;
+      gap: 1.6rem;
+      margin-bottom: 4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: var(--ink); }
+    nav a.active { color: var(--ink); }
+
+    /* ── sections ── */
+    section {
+      display: none;
+      animation: fadein 0.3s ease;
+    }
+
+    section.visible { display: block; }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── home ── */
+    .home-name {
+      font-size: 2.6rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+
+    .home-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      margin-bottom: 2.4rem;
+    }
+
+    .home-intro {
+      font-size: 1.08rem;
+      color: var(--ink);
+      max-width: 520px;
+    }
+
+    .home-intro p + p { margin-top: 1rem; }
+
+    .home-links {
+      margin-top: 2.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .home-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .home-links a:hover { color: var(--ink); }
+
+    /* ── section heading ── */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* ── about ── */
+    .about-text { font-size: 1.08rem; }
+    .about-text p + p { margin-top: 1rem; }
+
+    .about-tags {
+      margin-top: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+
+    /* ── projects ── */
+    .project-list { list-style: none; }
+
+    .project-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .project-item:first-child { border-top: 1px solid var(--rule); }
+
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .project-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .project-desc {
+      font-size: 0.97rem;
+      color: #4a4742;
+      line-height: 1.6;
+    }
+
+    .project-stack {
+      margin-top: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.67rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .project-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: var(--accent);
+      text-decoration: none;
+      margin-left: 0.8rem;
+    }
+
+    .project-link:hover { text-decoration: underline; }
+
+    /* ── contact ── */
+    .contact-text { font-size: 1.08rem; margin-bottom: 2rem; }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 300;
+    }
+
+    .contact-list a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-list a:hover { color: var(--accent); }
+
+    .contact-list .label { color: var(--muted); margin-right: 0.6rem; }
+
+    /* ── footer ── */
+    footer {
+      margin-top: 5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--rule);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 480px) {
+      .home-name { font-size: 2rem; }
+      .page { padding: 2.5rem 1.4rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <nav id="nav">
+    <a href="#" data-section="home" class="active">home</a>
+    <a href="#" data-section="about">about</a>
+    <a href="#" data-section="work">work</a>
+    <a href="#" data-section="contact">contact</a>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="visible">
+    <h1 class="home-name">jane doe</h1>
+    <p class="home-tagline">backend engineer · cs grad student · northeastern</p>
+    <div class="home-intro">
+      <p>I build scalable backend systems and automation tools that solve real-world problems with clean, efficient code.</p>
+      <p>Currently a Computer Science grad student at Northeastern University, curious about how things work behind the scenes.</p>
+    </div>
+    <div class="home-links">
+      <a href="#" data-section="work">selected projects →</a>
+      <a href="#" data-section="contact">get in touch →</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">about</p>
+    <div class="about-text">
+      <p>Hi! I'm a Computer Science grad student at Northeastern University with a strong interest in backend development and automation using AI.</p>
+      <p>I've enjoyed building scalable backend systems and experimenting with automation tools to reduce manual work. I'm curious about how things work behind the scenes and love solving real-world problems with clean, efficient code.</p>
+      <p>Outside of tech, I enjoy reading, films, and exploring cafes. I'm always open to chatting about tech, projects, or just connecting.</p>
+    </div>
+    <div class="about-tags">
+      <span>backend development</span>
+      <span>automation</span>
+      <span>ai tooling</span>
+      <span>distributed systems</span>
+      <span>python</span>
+      <span>go</span>
+      <span>postgresql</span>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <p class="section-label">selected work</p>
+    <ul class="project-list">
+
+      <li class="project-item">
+        <div class="project-header">
+          <span class="project-name">AutoFlow</span>
+          <span class="project-year">2024</span>
+          <a class="project-link" href="#">↗ github</a>
+        </div>
+        <p class="project-desc">A workflow automation engine that uses LLMs to parse natural language task descriptions and generate executable pipelines — cutting manual setup time by ~70%.</p>
+        <p class="project-stack">python · fastapi · openai api · celery · redis</p>
+      </li>
+
+      <li class="project-item">
+        <div class="project-header">
+          <span class="project-name">Quorum</span>
+          <span class="project-year">2024</span>
+          <a class="project-link" href="#">↗ github</a>
+        </div>
+        <p class="project-desc">A distributed key-value store implementing the Raft consensus algorithm from scratch, designed for fault-tolerant data replication across nodes.</p>
+        <p class="project-stack">go · grpc · protocol buffers · docker</p>
+      </li>
+
+      <li class="project-item">
+        <div class="project-header">
+          <span class="project-name">Pocketlog</span>
+          <span class="project-year">2023</span>
+          <a class="project-link" href="#">↗ github</a>
+        </div>
+        <p class="project-desc">A minimal personal finance tracker with a REST API backend, automatic categorization using a lightweight ML classifier, and weekly digest emails.</p>
+        <p class="project-stack">python · django · postgresql · scikit-learn</p>
+      </li>
+
+      <li class="project-item">
+        <div class="project-header">
+          <span class="project-name">Scrapeyard</span>
+          <span class="project-year">2023</span>
+          <a class="project-link" href="#">↗ github</a>
+        </div>
+        <p class="project-desc">A configurable web scraping framework with rate limiting, proxy rotation, and a built-in scheduler. Exports structured data to multiple formats and databases.</p>
+        <p class="project-stack">python · playwright · sqlite · typer</p>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">contact</p>
+    <p class="contact-text">I'm always open to chatting about tech, projects, or just connecting. Feel free to reach out.</p>
+    <ul class="contact-list">
+      <li><span class="label">email</span><a href="mailto:anu.mhegde@gmail.com">anu.mhegde@gmail.com</a></li>
+      <li><span class="label">github</span><a href="#">github.com/janedoe</a></li>
+      <li><span class="label">linkedin</span><a href="#">linkedin.com/in/janedoe</a></li>
+    </ul>
+  </section>
+
+  <footer>© 2025 jane doe</footer>
+</div>
+
+<script>
+  const links = document.querySelectorAll('a[data-section]');
+  const sections = document.querySelectorAll('section');
+
+  function show(id) {
+    sections.forEach(s => s.classList.remove('visible'));
+    links.forEach(l => l.classList.remove('active'));
+    document.getElementById(id).classList.add('visible');
+    document.querySelectorAll(`[data-section="${id}"]`).forEach(l => l.classList.add('active'));
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      show(link.dataset.section);
+    });
+  });
+</script>
+</body>
+</html>
