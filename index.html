@@ -12,7 +12,7 @@
     :root {
       --bg: #1a1d21;
       --ink: #e8eaed;
-      --muted: #6e7580;
+      --muted: #b1b8c3;
       --accent: #7eb8d4;
       --rule: #2d3138;
     }
@@ -233,11 +233,12 @@
   </nav>
 
   <section id="home" class="visible">
-    <h1 class="home-name">jane doe</h1>
-    <p class="home-tagline">backend engineer · cs grad student · northeastern</p>
+    <h1 class="home-name">Ananya</h1>
+    <p class="home-tagline">software engineer · cs grad student · northeastern</p>
     <div class="home-intro">
-      <p>I build scalable backend systems and automation tools that solve real-world problems with clean, efficient code.</p>
-      <p>Currently a Computer Science grad student at Northeastern University, curious about how things work behind the scenes.</p>
+      <p>Computer Science grad student at Northeastern University, curious about how things work behind the scenes. <br>
+         Interested in building scalable backend systems and automation tools that solve real-world problems with clean, efficient code.
+      </p>
     </div>
     <div class="home-links">
       <a href="#" data-section="work">selected projects →</a>
@@ -249,7 +250,9 @@
     <p class="section-label">about</p>
     <div class="about-text">
       <p>Hi! I'm a Computer Science grad student at Northeastern University with a strong interest in backend development and automation using AI.</p>
-      <p>I've enjoyed building scalable backend systems and experimenting with automation tools to reduce manual work. I'm curious about how things work behind the scenes and love solving real-world problems with clean, efficient code.</p>
+      <p>I've enjoyed building scalable backend systems and experimenting with automation tools to reduce manual work. I love solving real-world problems and am looking for opportunities to contribute to solving them.
+         <br> Currently, I'm exploring the AI side of things, working with LLMs, playing around with inference and prompt design, and figuring out how to actually plug these models into applications in useful ways. 
+      </p>
       <p>Outside of tech, I enjoy reading, films, and exploring cafes. I'm always open to chatting about tech, projects, or just connecting.</p>
     </div>
     <div class="about-tags">
@@ -269,32 +272,32 @@
 
       <li class="project-item">
         <div class="project-header">
-          <span class="project-name">AutoFlow</span>
-          <span class="project-year">2024</span>
+          <span class="project-name">FlowRide</span>
+          <span class="project-year">2025</span>
           <a class="project-link" href="#">↗ github</a>
         </div>
-        <p class="project-desc">A workflow automation engine that uses LLMs to parse natural language task descriptions and generate executable pipelines — cutting manual setup time by ~70%.</p>
-        <p class="project-stack">python · fastapi · openai api · celery · redis</p>
+        <p class="project-desc">A ride-sharing app where users can post, find, and book rides with real-time map visualization and in-app payments. Think Craigslist rideshare, but with live routing and instant booking confirmation.</p>
+        <p class="project-stack">next.js · react · redux · express.js · rabbitmq · mongodb · docker · aws ecs</p>
       </li>
 
       <li class="project-item">
         <div class="project-header">
-          <span class="project-name">Quorum</span>
-          <span class="project-year">2024</span>
+          <span class="project-name">Rebalance AI</span>
+          <span class="project-year">2025</span>
           <a class="project-link" href="#">↗ github</a>
         </div>
-        <p class="project-desc">A distributed key-value store implementing the Raft consensus algorithm from scratch, designed for fault-tolerant data replication across nodes.</p>
-        <p class="project-stack">go · grpc · protocol buffers · docker</p>
+        <p class="project-desc">Predicts where Bluebikes demand will spike across Boston so stations can be restocked before they run out. Runs automatically every month on fresh data without manual intervention.</p>
+        <p class="project-stack">python · airflow · mlflow · dvc · docker · gcp · github actions</p>
       </li>
 
       <li class="project-item">
         <div class="project-header">
-          <span class="project-name">Pocketlog</span>
-          <span class="project-year">2023</span>
+          <span class="project-name">EHR Sync Platform</span>
+          <span class="project-year">2025</span>
           <a class="project-link" href="#">↗ github</a>
         </div>
-        <p class="project-desc">A minimal personal finance tracker with a REST API backend, automatic categorization using a lightweight ML classifier, and weekly digest emails.</p>
-        <p class="project-stack">python · django · postgresql · scikit-learn</p>
+        <p class="project-desc">Keeps patient health records consistent across multiple hospital systems in real time — so a doctor pulling up a chart always sees the latest information, regardless of which system updated it.</p>
+        <p class="project-stack">kafka · postgresql · airflow · docker</p>
       </li>
 
       <li class="project-item">
@@ -315,23 +318,26 @@
     <p class="contact-text">I'm always open to chatting about tech, projects, or just connecting. Feel free to reach out.</p>
     <ul class="contact-list">
       <li><span class="label">email</span><a href="mailto:anu.mhegde@gmail.com">anu.mhegde@gmail.com</a></li>
-      <li><span class="label">github</span><a href="#">github.com/janedoe</a></li>
-      <li><span class="label">linkedin</span><a href="#">linkedin.com/in/janedoe</a></li>
+      <li><span class="label">github</span><a href="https://github.com/ananya-mh" target="_blank">github.com/ananya-mh</a></li>
+      <li><span class="label">linkedin</span><a href="https://www.linkedin.com/in/ananyamhegde/" target="_blank">linkedin.com/in/ananyamhegde</a></li>
     </ul>
   </section>
 
-  <footer>© 2025 jane doe</footer>
+  <footer>© 2025 ananya hegde</footer>
 </div>
+
 
 <script>
   const links = document.querySelectorAll('a[data-section]');
   const sections = document.querySelectorAll('section');
 
   function show(id) {
+    if (!document.getElementById(id)) id = 'home';
     sections.forEach(s => s.classList.remove('visible'));
     links.forEach(l => l.classList.remove('active'));
     document.getElementById(id).classList.add('visible');
     document.querySelectorAll(`[data-section="${id}"]`).forEach(l => l.classList.add('active'));
+    history.replaceState(null, '', '#' + id);
   }
 
   links.forEach(link => {
@@ -340,6 +346,10 @@
       show(link.dataset.section);
     });
   });
+
+  // restore section from hash on load
+  const initial = window.location.hash.replace('#', '') || 'home';
+  show(initial);
 </script>
 </body>
 </html>
