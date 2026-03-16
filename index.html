@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>jane doe</title>
+  <title>Ananya</title>
+  <link rel="icon" type="image/x-icon" href="computer.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -120,6 +121,9 @@
 
     .about-text { font-size: 1.08rem; }
     .about-text p + p { margin-top: 1rem; }
+    .about-text p:first-child {
+      margin-top: 0.2rem;
+    }
 
     .about-tags {
       margin-top: 2rem;
@@ -220,6 +224,106 @@
       .home-name { font-size: 2rem; }
       .page { padding: 2.5rem 1.4rem 5rem; }
     }
+
+  .about-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .portrait {
+    float: right;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin: 0 0 0.8rem 1.2rem;  /* less gap from text */
+
+    border: 2px solid var(--rule);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+
+  .home-name { cursor: default; }
+
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup-overlay.open {
+    display: flex;
+  }
+
+  .popup-box {
+    background: #e8eaed;
+    border: 1px solid var(--rule);
+    width: 280px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 300;
+  }
+
+  .popup-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.65rem;
+    color: #2d3138;
+  }
+
+  .popup-close {
+    background: none;
+    border: 1px solid var(--rule);
+    color: #2d3138;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.1rem 0.4rem;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .popup-close:hover { color: var(--ink); }
+
+  .popup-body {
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+    color: #2d3138;
+    line-height: 2;
+  }
+
+  .popup-cat {
+  display: block;
+  margin: 0 auto 0.8rem;
+  width: 20%;       
+  image-rendering: pixelated;  
+}
+
+  .popup-btn {
+    display: block;
+    margin: 1.2rem auto 0;
+    background: none;
+    border: 1px solid var(--rule);
+    color: #2d3138;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 300;
+    padding: 0.4rem 1.8rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .popup-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
   </style>
 </head>
 <body>
@@ -243,26 +347,32 @@
     <div class="home-links">
       <a href="#" data-section="work">selected projects →</a>
       <a href="#" data-section="contact">get in touch →</a>
+      <a href="#" id="catTrigger">get a cat →</a>
     </div>
   </section>
 
   <section id="about">
     <p class="section-label">about</p>
+
+    <img src="img.jpeg" alt="Ananya Hegde" class="portrait"/>
+
     <div class="about-text">
       <p>Hi! I'm a Computer Science grad student at Northeastern University with a strong interest in backend development and automation using AI.</p>
+
       <p>I've enjoyed building scalable backend systems and experimenting with automation tools to reduce manual work. I love solving real-world problems and am looking for opportunities to contribute to solving them.
-         <br> Currently, I'm exploring the AI side of things, working with LLMs, playing around with inference and prompt design, and figuring out how to actually plug these models into applications in useful ways. 
-      </p>
+      <br>Currently, I'm exploring the AI side of things — working with LLMs, playing around with inference and prompt design, and figuring out how to plug these models into applications in useful ways.</p>
+
       <p>Outside of tech, I enjoy reading, films, and exploring cafes. I'm always open to chatting about tech, projects, or just connecting.</p>
     </div>
+
+    <div style="clear: both;"></div>
+
     <div class="about-tags">
       <span>backend development</span>
       <span>automation</span>
-      <span>ai tooling</span>
       <span>distributed systems</span>
-      <span>python</span>
-      <span>go</span>
-      <span>postgresql</span>
+      <span>artificial intelligence</span>
+      <span>machine learning</span>
     </div>
   </section>
 
@@ -272,9 +382,29 @@
 
       <li class="project-item">
         <div class="project-header">
+          <span class="project-name">RegAI</span>
+          <span class="project-year">2026</span>
+          <!-- <a class="project-link" href="#">↗ github</a> -->
+        </div>
+        <p class="project-desc">An AI compliance platform where you upload your company's policy documents, pick a regulatory framework — GDPR, SOC 2, HIPAA — and get back a detailed gap analysis report with citations showing exactly where your policies fall short</p>
+        <p class="project-stack">fastapi · next.js · langgraph · faiss · chroma · postgresql · docker · gcp cloud run · github actions</p>
+      </li>
+
+      <li class="project-item">
+        <div class="project-header">
+          <span class="project-name">AI Support Agent</span>
+          <span class="project-year">2026</span>
+          <!-- <a class="project-link" href="#">↗ github</a> -->
+        </div>
+        <p class="project-desc"> A developer support tool that answers technical questions by searching through 1,070+ chunks of Firebase documentation — so instead of manually digging through docs, you get a cited answer instantly</p>
+        <p class="project-stack">node.js · react · mongodb · gemini api · pinecone · mcp · docker · gcp</p>
+      </li>
+
+      <li class="project-item">
+        <div class="project-header">
           <span class="project-name">FlowRide</span>
           <span class="project-year">2025</span>
-          <a class="project-link" href="#">↗ github</a>
+         <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc">A ride-sharing app where users can post, find, and book rides with real-time map visualization and in-app payments. Think Craigslist rideshare, but with live routing and instant booking confirmation.</p>
         <p class="project-stack">next.js · react · redux · express.js · rabbitmq · mongodb · docker · aws ecs</p>
@@ -284,7 +414,7 @@
         <div class="project-header">
           <span class="project-name">Rebalance AI</span>
           <span class="project-year">2025</span>
-          <a class="project-link" href="#">↗ github</a>
+          <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc">Predicts where Bluebikes demand will spike across Boston so stations can be restocked before they run out. Runs automatically every month on fresh data without manual intervention.</p>
         <p class="project-stack">python · airflow · mlflow · dvc · docker · gcp · github actions</p>
@@ -294,20 +424,10 @@
         <div class="project-header">
           <span class="project-name">EHR Sync Platform</span>
           <span class="project-year">2025</span>
-          <a class="project-link" href="#">↗ github</a>
+          <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc">Keeps patient health records consistent across multiple hospital systems in real time — so a doctor pulling up a chart always sees the latest information, regardless of which system updated it.</p>
         <p class="project-stack">kafka · postgresql · airflow · docker</p>
-      </li>
-
-      <li class="project-item">
-        <div class="project-header">
-          <span class="project-name">Scrapeyard</span>
-          <span class="project-year">2023</span>
-          <a class="project-link" href="#">↗ github</a>
-        </div>
-        <p class="project-desc">A configurable web scraping framework with rate limiting, proxy rotation, and a built-in scheduler. Exports structured data to multiple formats and databases.</p>
-        <p class="project-stack">python · playwright · sqlite · typer</p>
       </li>
 
     </ul>
@@ -324,6 +444,19 @@
   </section>
 
   <footer>© 2025 ananya hegde</footer>
+  <div class="popup-overlay" id="catPopup">
+    <div class="popup-box">
+      <div class="popup-titlebar">
+        <span>message</span>
+        <button class="popup-close" id="popupClose">✕</button>
+      </div>
+      <div class="popup-body">
+        <img src="cat.gif" alt="cat" class="popup-cat" />
+        you have received a cat.
+        <button class="popup-btn" id="popupOk">ok</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -350,6 +483,22 @@
   // restore section from hash on load
   const initial = window.location.hash.replace('#', '') || 'home';
   show(initial);
+  const catPopup = document.getElementById('catPopup');
+  const popupClose = document.getElementById('popupClose');
+  const popupOk = document.getElementById('popupOk');
+
+  // replace with:
+  document.getElementById('catTrigger').addEventListener('click', e => {
+    e.preventDefault();
+    catPopup.classList.add('open');
+  });
+
+  popupClose.addEventListener('click', () => catPopup.classList.remove('open'));
+  popupOk.addEventListener('click', () => catPopup.classList.remove('open'));
+
+  catPopup.addEventListener('click', e => {
+    if (e.target === catPopup) catPopup.classList.remove('open');
+  });
 </script>
 </body>
 </html>
