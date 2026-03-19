@@ -7,324 +7,7 @@
   <link rel="icon" type="image/x-icon" href="computer.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #1a1d21;
-      --ink: #e8eaed;
-      --muted: #b1b8c3;
-      --accent: #7eb8d4;
-      --rule: #2d3138;
-    }
-
-    html { font-size: 17px; }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'EB Garamond', Georgia, serif;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-
-    .page {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 4rem 2rem 6rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 1.6rem;
-      margin-bottom: 4rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 300;
-      letter-spacing: 0.04em;
-    }
-
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    nav a:hover { color: var(--ink); }
-    nav a.active { color: var(--ink); }
-
-    section {
-      display: none;
-      animation: fadein 0.3s ease;
-    }
-
-    section.visible { display: block; }
-
-    @keyframes fadein {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .home-name {
-      font-size: 2.6rem;
-      font-weight: 400;
-      line-height: 1.1;
-      margin-bottom: 0.4rem;
-      letter-spacing: -0.01em;
-    }
-
-    .home-tagline {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 300;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      margin-bottom: 2.4rem;
-    }
-
-    .home-intro {
-      font-size: 1.08rem;
-      color: var(--ink);
-      max-width: 520px;
-    }
-
-    .home-intro p + p { margin-top: 1rem; }
-
-    .home-links {
-      margin-top: 2.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 300;
-      color: var(--muted);
-    }
-
-    .home-links a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .home-links a:hover { color: var(--ink); }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-
-    .about-text { font-size: 1.08rem; }
-    .about-text p + p { margin-top: 1rem; }
-    .about-text p:first-child {
-      margin-top: 0.2rem;
-    }
-
-    .about-tags {
-      margin-top: 2rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 300;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.2rem;
-    }
-
-    .project-list { list-style: none; }
-
-    .project-item {
-      padding: 1.4rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .project-item:first-child { border-top: 1px solid var(--rule); }
-
-    .project-header {
-      display: flex;
-      align-items: baseline;
-      gap: 0.8rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .project-name {
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-
-    .project-year {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      font-weight: 300;
-      color: var(--muted);
-    }
-
-    .project-desc {
-      font-size: 0.97rem;
-      color: #9aa0aa;
-      line-height: 1.6;
-    }
-
-    .project-stack {
-      margin-top: 0.5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.67rem;
-      font-weight: 300;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-    }
-
-    .project-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      font-weight: 300;
-      color: var(--accent);
-      text-decoration: none;
-      margin-left: 0.8rem;
-    }
-
-    .project-link:hover { text-decoration: underline; }
-
-    .contact-text { font-size: 1.08rem; margin-bottom: 2rem; }
-
-    .contact-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 300;
-    }
-
-    .contact-list a {
-      color: var(--ink);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .contact-list a:hover { color: var(--accent); }
-    .contact-list .label { color: var(--muted); margin-right: 0.6rem; }
-
-    footer {
-      margin-top: 5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 300;
-      color: var(--rule);
-      letter-spacing: 0.04em;
-    }
-
-    @media (max-width: 480px) {
-      .home-name { font-size: 2rem; }
-      .page { padding: 2.5rem 1.4rem 5rem; }
-    }
-
-  .about-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-  }
-
-  .portrait {
-    float: right;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-
-    margin: 0 0 0.8rem 1.2rem;  /* less gap from text */
-
-    border: 2px solid var(--rule);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  }
-
-  .home-name { cursor: default; }
-
-  .popup-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .popup-overlay.open {
-    display: flex;
-  }
-
-  .popup-box {
-    background: #e8eaed;
-    border: 1px solid var(--rule);
-    width: 280px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 300;
-  }
-
-  .popup-titlebar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.4rem 0.7rem;
-    border-bottom: 1px solid var(--rule);
-    font-size: 0.65rem;
-    color: #2d3138;
-  }
-
-  .popup-close {
-    background: none;
-    border: 1px solid var(--rule);
-    color: #2d3138;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.1rem 0.4rem;
-    cursor: pointer;
-    transition: color 0.15s;
-  }
-
-  .popup-close:hover { color: var(--ink); }
-
-  .popup-body {
-    padding: 1.8rem 1.4rem;
-    text-align: center;
-    color: #2d3138;
-    line-height: 2;
-  }
-
-  .popup-cat {
-  display: block;
-  margin: 0 auto 0.8rem;
-  width: 20%;       
-  image-rendering: pixelated;  
-}
-
-  .popup-btn {
-    display: block;
-    margin: 1.2rem auto 0;
-    background: none;
-    border: 1px solid var(--rule);
-    color: #2d3138;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 300;
-    padding: 0.4rem 1.8rem;
-    cursor: pointer;
-    transition: border-color 0.15s, color 0.15s;
-  }
-
-  .popup-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="page">
@@ -383,7 +66,6 @@
         <div class="project-header">
           <span class="project-name">RegAI</span>
           <span class="project-year">2026</span>
-          <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc">An AI compliance platform where you upload your company's policy documents, pick a regulatory framework — GDPR, SOC 2, HIPAA — and get back a detailed gap analysis report with citations showing exactly where your policies fall short</p>
         <p class="project-stack">fastapi · next.js · langgraph · faiss · chroma · postgresql · docker · gcp cloud run · github actions</p>
@@ -393,7 +75,6 @@
         <div class="project-header">
           <span class="project-name">AI Support Agent</span>
           <span class="project-year">2026</span>
-          <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc"> A developer support tool that answers technical questions by searching through 1,070+ chunks of Firebase documentation — so instead of manually digging through docs, you get a cited answer instantly</p>
         <p class="project-stack">node.js · react · mongodb · gemini api · pinecone · mcp · docker · gcp</p>
@@ -403,7 +84,6 @@
         <div class="project-header">
           <span class="project-name">FlowRide</span>
           <span class="project-year">2025</span>
-         <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc">A ride-sharing app where users can post, find, and book rides with real-time map visualization and in-app payments. Think Craigslist rideshare, but with live routing and instant booking confirmation.</p>
         <p class="project-stack">next.js · react · redux · express.js · rabbitmq · mongodb · docker · aws ecs</p>
@@ -413,7 +93,6 @@
         <div class="project-header">
           <span class="project-name">Rebalance AI</span>
           <span class="project-year">2025</span>
-          <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc">Predicts where Bluebikes demand will spike across Boston so stations can be restocked before they run out. Runs automatically every month on fresh data without manual intervention.</p>
         <p class="project-stack">python · airflow · mlflow · dvc · docker · gcp · github actions</p>
@@ -423,7 +102,6 @@
         <div class="project-header">
           <span class="project-name">EHR Sync Platform</span>
           <span class="project-year">2025</span>
-          <!-- <a class="project-link" href="#">↗ github</a> -->
         </div>
         <p class="project-desc">Keeps patient health records consistent across multiple hospital systems in real time — so a doctor pulling up a chart always sees the latest information, regardless of which system updated it.</p>
         <p class="project-stack">kafka · postgresql · airflow · docker</p>
@@ -443,6 +121,7 @@
   </section>
 
   <footer>© 2025 ananya hegde</footer>
+
   <div class="popup-overlay" id="catPopup">
     <div class="popup-box">
       <div class="popup-titlebar">
@@ -456,48 +135,9 @@
       </div>
     </div>
   </div>
+
 </div>
 
-
-<script>
-  const links = document.querySelectorAll('a[data-section]');
-  const sections = document.querySelectorAll('section');
-
-  function show(id) {
-    if (!document.getElementById(id)) id = 'home';
-    sections.forEach(s => s.classList.remove('visible'));
-    links.forEach(l => l.classList.remove('active'));
-    document.getElementById(id).classList.add('visible');
-    document.querySelectorAll(`[data-section="${id}"]`).forEach(l => l.classList.add('active'));
-    history.replaceState(null, '', '#' + id);
-  }
-
-  links.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      show(link.dataset.section);
-    });
-  });
-
-  // restore section from hash on load
-  const initial = window.location.hash.replace('#', '') || 'home';
-  show(initial);
-  const catPopup = document.getElementById('catPopup');
-  const popupClose = document.getElementById('popupClose');
-  const popupOk = document.getElementById('popupOk');
-
-  // replace with:
-  document.getElementById('catTrigger').addEventListener('click', e => {
-    e.preventDefault();
-    catPopup.classList.add('open');
-  });
-
-  popupClose.addEventListener('click', () => catPopup.classList.remove('open'));
-  popupOk.addEventListener('click', () => catPopup.classList.remove('open'));
-
-  catPopup.addEventListener('click', e => {
-    if (e.target === catPopup) catPopup.classList.remove('open');
-  });
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
